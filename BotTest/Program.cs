@@ -15,13 +15,13 @@ namespace BotTest
 		static async Task Main(string[] args)
 		{
 			var botClient = new TelegramBotClient("INSERT_TOKEN_HERE");
-			int offset = 0;
+			int offset = 0; // про оффсет и работу с update читать тут https://core.telegram.org/bots/api#update
 			while (true)
 			{
 				var updates = await botClient.GetUpdatesAsync(offset);
 				foreach (var update in updates)
 				{
-					offset = update.Id + 1;
+					offset = update.Id + 1; // помечаем update как прочитанный
 
 					string text = update.Message.Text;
 					if (string.IsNullOrWhiteSpace(text))
